@@ -1,0 +1,29 @@
+pipeline {
+    agent { label'jenkins-agent' }
+    tools {
+        jdk 'java11'
+        maven 'maven3'
+}
+stages {
+    stage("cleanup workspace"){
+          steps {
+          cleanws()
+          }
+}
+  stage("checkout from scm"){
+          steps {
+              git branch: 'main', credentialsId: 'github', url: 'https://github.com/himani0323/registration-app.git'
+          }
+  }
+  stage("build app"){
+      steps {
+        sh "mvn build package"
+      }
+  }
+   stage("test"){
+       steps {
+            sh "mvn test"
+      }
+  }
+   
+ 
