@@ -55,6 +55,16 @@ stages {
 }
 }
 }
+     stage('Install buildx') {
+            steps {
+                script {
+                    sh 'docker buildx version || docker build --platform=local -o . git://github.com/docker/buildx'
+                    sh 'mkdir -p ~/.docker/cli-plugins/'
+                    sh 'mv buildx ~/.docker/cli-plugins/docker-buildx'
+                }
+            }
+}
+
         
   }
 
