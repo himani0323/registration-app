@@ -51,19 +51,11 @@ stages {
                   docker.withRegistry('',DOCKER_PASS) {
                       docker_image.push("${IMAGE_TAG}")
                       docker_image.push('latest')
-}
-}
-}
-}
-     stage('Install buildx') {
-            steps {
-                script {
-                    sh 'docker buildx version || docker build --platform=local -o . git://github.com/docker/buildx'
-                    sh 'mkdir -p ~/.docker/cli-plugins/'
-                    sh 'mv buildx ~/.docker/cli-plugins/docker-buildx'
-                }
-            }
-}
+                  }       
+                   }   
+             }
+     }
+
 
         
   }
