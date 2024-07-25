@@ -30,22 +30,22 @@ stages {
    stage("sonarqube-analysis"){
        steps {
           script {
-               withSonarQubeEnv(credentialId : 'sonarqube-token') {
+               withSonarQubeEnv(credentialsId : 'sonarqube-token') {
                sh "mvn sonar:sonar"
-}
-}
-}
+               }
+          }
+     }
 }
 
    stage("quality gate"){
        steps {
          script {
-                waitForQualityGate abortPipeline: false, credentialId: 'sonarqube-token'
-}
-}
-}
-}
-}
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-token'
+        }
+     }
+ }
+    }
+ }
       
 
           
