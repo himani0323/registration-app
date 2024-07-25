@@ -27,8 +27,6 @@ stages {
       }
   }
   
-                   }   
-             }
    stage("sonarqube-analysis"){
        steps {
           script {
