@@ -29,6 +29,21 @@ stages {
   
                    }   
              }
+   stage("sonarqube-analysis"){
+       steps {
+          script {
+               withSonarQubeEnv(credentialId : 'sonarqube-token) {
+               sh "mvn sonar:sonar"
+}
+}
+}
+}
+
+   stage("quality gate"){
+       steps {
+         script {
+                waitForQualityGate abortPipeline: false, credentialId: 'sonarqube-token'
+      
 
           
  
